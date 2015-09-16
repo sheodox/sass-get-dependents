@@ -5,11 +5,12 @@ var app = require('../index.js'),
     verbose = require('verboser'),
     nopt = require('nopt'),
     knownOpts = {
-      'file': String
+      'file': String,
+      'basePath': String
     },
     args = nopt(knownOpts);
 
 if (args.file) {
   verbose.force();
-  return app(args.file);
+  return app(args.file, args.basePath);
 }

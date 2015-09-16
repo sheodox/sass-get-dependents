@@ -9,7 +9,7 @@ var startTime = Date.now(),
 
 var checkForImports = function (src) {
   var contents,
-  importRegEx = new RegExp("@import"),
+    importRegEx = new RegExp("@import"),
     matchingFiles = [];
 
   src.forEach(function (cur) {
@@ -54,11 +54,12 @@ var dependentFiles = function (files, i) {
   return dependentFiles(files, ++i);
 };
 
-module.exports = function (source) {
+module.exports = function (source, basePath) {
+  basePath = basePath || '';
   verbose.log('Checking ' + source).linebreak();
 
   // Initial file checks -- does exist?.
-  if (!fs.existsSync(source)) {
+  if (!fs.existsSync(path.join(basePath, source))) {
     return [];
   }
   // Initial file checks -- is css?
@@ -68,10 +69,9 @@ module.exports = function (source) {
 
   // Okay, the basics are there. Lets build the patterns
   var fileExt = path.extname(source),
-    fileSearch = glob.sync('**/*' + fileExt),
-    allRelPaths = [],
+    fileSearch = glob.sync(path.join(basePath, '**/*') + fileExt),
     allDependentFiles = [],
-    results = [];
+    results;
 
   filesWithImports = checkForImports(fileSearch);
 
