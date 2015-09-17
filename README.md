@@ -1,18 +1,15 @@
 # SASS-GET-DEPENDENTS
 *Return a list of files that depend on your SCSS/SASS partial.*
 
-[![Travis CI](https://img.shields.io/travis/tbremer/sass-get-dependents.svg?style=flat-square)](https://travis-ci.org/tbremer/sass-get-dependents)
-[![Version](https://img.shields.io/npm/v/sass-get-dependents.svg?style=flat-square)](https://www.npmjs.com/package/sass-get-dependents)
-[![NPM Downloads](https://img.shields.io/npm/dm/sass-get-dependents.svg?style=flat-square)](https://www.npmjs.com/package/sass-get-dependents)
-[![LICENSE](https://img.shields.io/npm/l/sass-get-dependents.svg?style=flat-square)](https://github.com/tbremer/sass-get-dependents/blob/master/LICENSE)
-
-
 ## Example:
 ```javascript
 dependentFiles = require('sass-get-dependents');
 
+// The directory to search within
+var basePath =
+
 // Array of dependent files
-var files = dependentFiles(src);
+var files = dependentFiles(src, basePath);
 console.log(files);
 ```
 ## As a CLI
@@ -20,5 +17,5 @@ console.log(files);
 
 From within SASS Structure
 ```bash
-$ getDependents --file=path/to/partial/file
+$ getDependents --file=path/to/partial/file --basePath=path/to/search/in
 ```
