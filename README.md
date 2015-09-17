@@ -5,8 +5,7 @@
 ```javascript
 dependentFiles = require('sass-get-dependents');
 
-// The directory to search within
-var basePath =
+var basePath = 'directory/to/search/within';
 
 // Array of dependent files
 var files = dependentFiles(src, basePath);
